@@ -9,6 +9,7 @@ mod auto;
 mod cards;
 mod data;
 mod enemies;
+mod fill;
 mod grade;
 mod hero;
 mod hud;
@@ -52,11 +53,13 @@ impl Plugin for SurvivorsPlugin {
             .add_message::<abilities::Hit>()
             .add_message::<enemies::Loot>()
             .add_plugins(bevy::ui_render::UiMaterialPlugin::<hud::SweepUiMaterial>::default())
+            .add_plugins(bevy::ui_render::UiMaterialPlugin::<fill::FillMaterial>::default())
             .add_systems(Startup, hud::setup_hud)
             .add_systems(Update, hero::daylight)
             .add_systems(
                 Update,
                 (
+                    hero::drop_stray_buttons,
                     hero::aim_cursor,
                     mobility::cast_mobility,
                     hero::drive_hero,
