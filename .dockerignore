@@ -1,0 +1,22 @@
+# Build outputs and toolchains: regenerated inside the image.
+target/
+tools/
+web/dist/
+
+# Game data and anything derived from a local install: never in the image.
+wow-data/
+WoW/
+extracted/
+out/
+wow-addons-vanilla/
+
+# Local state and credentials.
+benilla-config/
+.probe-identity
+trace-*.json
+
+# VCS and editor cruft.
+.git/
+.claude/
+.idea/
+.DS_Store

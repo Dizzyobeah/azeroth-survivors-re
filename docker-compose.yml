@@ -1,0 +1,14 @@
+# Dokploy compose app. Dokploy's Traefik routes HTTPS to container port 8090; set the domain
+# (container port 8090, HTTPS on, custom certificate for the LAN hostname) in the Dokploy UI.
+#
+# Game data: the Data folder sits in Dokploy's files folder, next to this compose file, so the
+# relative path survives redeploys (absolute host paths are cleaned up on deploy).
+#
+# Player state: none on the server. Saves and settings live in each browser's localStorage,
+# keyed by origin, so they persist across container restarts as long as the URL stays the same.
+services:
+  game:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ../files/wow-data:/data:ro
